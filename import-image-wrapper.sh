@@ -4,6 +4,13 @@
 
 export SCRIPT_NAME="$0"
 
+if [ -z "$AWS_REGION" ]
+then
+	echo "Missing AWS_REGION environment variable"
+	echo "Usage: $SCRIPT_NAME"
+	exit 1
+fi
+
 if [ $# -ne 3 ]
 then
   echo "Error: missing argument(s)"
@@ -29,5 +36,6 @@ sed -i.bak "s/IMAGE/${IMAGE}/" containers.json
 sed -i.bak "s/JOB/${JOB}/" containers.json
 
 aws ec2 import-image \
+  --region ${AWS_REGION} \
   --description ${JOB} \
   --disk-containers file://containers.json
