@@ -16,7 +16,7 @@ IMAGE="$2"
 JOB="$3"
 
 # cp role-policy.json.template role-policy.json
-# sed -i '' "s/MY-BUCKET/${BUCKET}/" role-policy.json
+# sed "s/MY-BUCKET/${BUCKET}/" role-policy.json
 #
 # aws iam put-role-policy \
 #   --role-name vmimport \
@@ -24,9 +24,9 @@ JOB="$3"
 #   --policy-document file://role-policy.json
 
 cp containers.json.template containers.json
-sed -i '' "s/BUCKET/${BUCKET}/" containers.json
-sed -i '' "s/IMAGE/${IMAGE}/" containers.json
-sed -i '' "s/JOB/${JOB}/" containers.json
+sed "s/BUCKET/${BUCKET}/" containers.json
+sed "s/IMAGE/${IMAGE}/" containers.json
+sed "s/JOB/${JOB}/" containers.json
 
 aws ec2 import-image \
   --description ${JOB} \
