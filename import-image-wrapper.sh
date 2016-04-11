@@ -24,9 +24,9 @@ JOB="$3"
 #   --policy-document file://role-policy.json
 
 cp containers.json.template containers.json
-sed "s/BUCKET/${BUCKET}/" containers.json
-sed "s/IMAGE/${IMAGE}/" containers.json
-sed "s/JOB/${JOB}/" containers.json
+sed -i.bak "s/BUCKET/${BUCKET}/" containers.json
+sed -i.bak "s/IMAGE/${IMAGE}/" containers.json
+sed -i.bak "s/JOB/${JOB}/" containers.json
 
 aws ec2 import-image \
   --description ${JOB} \
