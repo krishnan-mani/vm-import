@@ -42,4 +42,4 @@ import_task_id=$(aws ec2 import-image \
                     --output json \
                     --query 'ImportTaskId')
 
-export import_task_id
+echo ${import_task_id}
