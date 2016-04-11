@@ -35,7 +35,11 @@ sed -i.bak "s/BUCKET/${BUCKET}/" containers.json
 sed -i.bak "s/IMAGE/${IMAGE}/" containers.json
 sed -i.bak "s/JOB/${JOB}/" containers.json
 
-aws ec2 import-image \
-  --region ${AWS_REGION} \
-  --description ${JOB} \
-  --disk-containers file://containers.json
+import_task_id=$(aws ec2 import-image \
+                    --region ${AWS_REGION} \
+                    --description ${JOB} \
+                    --disk-containers file://containers.json \
+                    --output json \
+                    --query 'ImportTaskId')
+
+export import_task_id
