@@ -1,0 +1,8 @@
+[{
+  "Description": "JOB",
+  "Format": "ova",
+  "UserBucket": {
+    "S3Bucket": "BUCKET",
+    "S3Key": "IMAGE"
+  }
+}]
